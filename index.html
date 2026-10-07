@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#11100f" />
+  <meta name="description" content="هفت‌خان رستم — بازی مترویدونیای دوبعدی برای موبایل" />
+  <title>هفت‌خان رستم</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main id="app">
+    <canvas id="game" aria-label="بوم بازی"></canvas>
+
+    <section id="mainMenu" class="screen active">
+      <div class="menu-art"></div>
+      <div class="menu-card">
+        <div class="brand-mark">ر</div>
+        <h1>هفت‌خان رستم</h1>
+        <p>از سیستان به مازندران سفر کن!</p>
+        <div class="menu-actions">
+          <button id="startBtn" class="primary">آغاز سفر</button>
+          <button id="continueBtn">ادامه</button>
+          <button id="settingsBtn">تنظیمات</button>
+        </div>
+        <div class="menu-foot">هفت‌خان رستم · ماجراجویی حماسی به شیوهٔ نگارگری ایرانی</div>
+      </div>
+    </section>
+
+    <section id="hud" class="hud hidden">
+      <div class="hud-right">
+        <div class="hud-pill"><span id="khanLabel">پیش‌درآمد</span><b id="roomLabel">۱/۴۸</b></div>
+        <div class="health"><span id="healthFill"></span></div>
+      </div>
+      <button id="menuBtn" class="icon-btn" aria-label="منو">☰</button>
+    </section>
+
+    <section id="mapPanel" class="overlay hidden">
+      <div class="panel wide">
+        <div class="panel-head"><h2>نقشه راه</h2><button class="close-btn" data-close="mapPanel">×</button></div>
+        <div id="mapGrid" class="map-grid"></div>
+        <div class="map-legend">
+          <span><i class="dot current"></i> موقعیت</span>
+          <span><i class="dot khan"></i> خان</span>
+          <span><i class="dot forge"></i> آهنگری</span>
+          <span><i class="dot water"></i> چشمه</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="pausePanel" class="overlay hidden">
+      <div class="panel small">
+        <h2>بازی متوقف شد</h2>
+        <button id="resumeBtn" class="primary">ادامه بازی</button>
+        <button id="pauseMapBtn">نقشه</button>
+        <button id="pauseSettingsBtn">تنظیمات</button>
+        <button id="saveQuitBtn">ذخیره و خروج</button>
+      </div>
+    </section>
+
+    <section id="settingsPanel" class="overlay hidden">
+      <div class="panel small">
+        <div class="panel-head"><h2>تنظیمات</h2><button class="close-btn" data-close="settingsPanel">×</button></div>
+        <label class="setting"><span>لرزش</span><input id="vibrationToggle" type="checkbox" checked /></label>
+        <label class="setting"><span>نمایش راهنمای هدف‌گیری</span><input id="aimToggle" type="checkbox" checked /></label>
+        <label class="setting"><span>افکت‌های تصویری</span><input id="effectsToggle" type="checkbox" checked /></label>
+        <button id="resetBtn" class="danger">پاک کردن ذخیره</button>
+      </div>
+    </section>
+
+    <section id="forgePanel" class="overlay hidden">
+      <div class="panel small forge-panel">
+        <div class="panel-head"><h2>آهنگری</h2><button class="close-btn" data-close="forgePanel">×</button></div>
+        <div class="coins"><span>سکه</span><b id="coinLabel">۰</b></div>
+        <button class="upgrade" data-upgrade="power"><span>قدرت نبرد</span><b id="powerCost">۴۰</b></button>
+        <button class="upgrade" data-upgrade="mobility"><span>چابکی رخش</span><b id="mobilityCost">۵۰</b></button>
+        <button class="upgrade" data-upgrade="armor"><span>پایداری</span><b id="armorCost">۴۵</b></button>
+        <p class="forge-note">ارتقاها دائمی‌اند و در سفرهای بعدی حفظ می‌شوند.</p>
+      </div>
+    </section>
+
+    <section id="dialogue" class="dialogue hidden">
+      <div class="dialogue-inner"><span id="dialogueName">روایت</span><p id="dialogueText"></p></div>
+    </section>
+
+    <section id="cutscene" class="screen hidden">
+      <div id="cutsceneScene" class="cutscene-scene"></div>
+      <div class="cutscene-copy">
+        <div id="cutsceneTitle">فرجام</div>
+        <p id="cutsceneText"></p>
+        <button id="cutsceneNext" class="primary">ادامه</button>
+      </div>
+    </section>
+
+    <div id="mobileControls" class="controls hidden">
+      <div class="joystick" id="joystick"><div class="stick"></div></div>
+      <div class="action-buttons">
+        <button class="control-btn" id="attackBtn">ضربه</button>
+        <button class="control-btn jump" id="jumpBtn">پرش</button>
+        <button class="control-btn ranged" id="rangedBtn">قدرت</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </main>
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
